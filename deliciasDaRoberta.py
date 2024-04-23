@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 
 # Carregar dados
-data = pd.read_csv('path_to_your_file.csv')
+data = pd.read_csv('train.csv')
 
 # Preencher valores faltantes
 data['text'] = data['text'].fillna(" ")
