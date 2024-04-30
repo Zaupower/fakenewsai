@@ -29,3 +29,6 @@ data['predicted_label'] = data['predicted_label'].replace({'LABEL_0': 0, 'LABEL_
 
 # Optionally print or save the results
 print(data[['id', 'title', 'predicted_label']])
+#write to csv
+data[['id', 'title', 'predicted_label']].to_csv('results.csv', index=False)
+
