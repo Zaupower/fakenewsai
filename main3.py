@@ -21,14 +21,23 @@ from sklearn.metrics import accuracy_score, classification_report
 
 # SVM
 svm_classifier = SVC(kernel='linear')
-svm_classifier.fit(X_train, y_train)
-svm_predictions = svm_classifier.predict(X_test)
-print("SVM Accuracy:", accuracy_score(y_test, svm_predictions))
 
-# Cross Validation VERY IMPORTANT
-from sklearn.model_selection import cross_val_score, StratifiedKFold
-skf = StratifiedKFold(n_splits=5)
-scores = cross_val_score(svm_classifier, X, y, cv=skf)
-print("Cross-validated scores:", scores)
+# Test test dataset
 
-print("SVM Classification Report:\n", classification_report(y_test, svm_predictions))
+# Load the test dataset
+test_df = pd.read_csv('test.csv')
+test_df['clean_text'] = test_df['text'].apply(clean_text)
+
+# Transform the test data using the same vectorizer that was fit on the training data
+X_test_new = vectorizer.transform(test_df['clean_text'])
+# Make predictions using the SVM classifier
+test_predictions = svm_classifier.predict(X_test_new)
+# Create a DataFrame with the test dataset IDs and the corresponding predictions
+submit_df = pd.DataFrame({
+    'id': test_df['id'],
+    'label': test_predictions
+})
+
+# Save the DataFrame to a CSV file
+submit_df.to_csv('submit.csv', index=False)
+
