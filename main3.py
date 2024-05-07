@@ -21,6 +21,16 @@ from sklearn.metrics import accuracy_score, classification_report
 
 # SVM
 svm_classifier = SVC(kernel='linear')
+svm_classifier.fit(X_train, y_train)
+svm_predictions = svm_classifier.predict(X_test)
+print("SVM Accuracy:", accuracy_score(y_test, svm_predictions))
+
+# Cross Validation VERY IMPORTANT
+from sklearn.model_selection import cross_val_score, StratifiedKFold
+skf = StratifiedKFold(n_splits=5)
+scores = cross_val_score(svm_classifier, X, y, cv=skf)
+print("Cross-validated scores:", scores)
+print("SVM Classification Report:\n", classification_report(y_test, svm_predictions))
 
 # Test test dataset
 
