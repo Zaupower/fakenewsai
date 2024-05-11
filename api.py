@@ -16,7 +16,7 @@ def check_string():
     result_str = "unreliable news" if result == 1 else "reliable news"
     return jsonify({"result": result_str})
 
-@app.route('/evaluate_tweets', methods=['POST'])
+@app.route('/evaluate_tweets', methods=['GET'])
 def evaluate_tweets():
     data = request.json
     username = data.get('username')

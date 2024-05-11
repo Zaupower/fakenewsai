@@ -23,7 +23,7 @@ def get_tweets_by_month(username, month):
         for tweet in tmp_tweets:
             tweet_date = tweet.created_at
             if start_date <= tweet_date < end_date:
-                tweets.append(tweet)
+                tweets.append(tweet.full_text)
             elif tweet_date < start_date:
                 return tweets
 

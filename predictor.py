@@ -35,10 +35,10 @@ class Predictor:
         print(f"Initialization time: {time.time() - start_time:.2f} seconds")
 
         # Cross-validation
-        skf = StratifiedKFold(n_splits=5)
-        scores = cross_val_score(self.svm_classifier, X, y, cv=skf)
-        print("Cross-validated scores:", scores)
-        print("SVM Classification Report:\n", classification_report(y_test, svm_predictions))
+        #skf = StratifiedKFold(n_splits=5)
+        #scores = cross_val_score(self.svm_classifier, X, y, cv=skf)
+        #print("Cross-validated scores:", scores)
+        #print("SVM Classification Report:\n", classification_report(y_test, svm_predictions))
 
     def predict_string(self, input_string):
         start_time = time.time()
