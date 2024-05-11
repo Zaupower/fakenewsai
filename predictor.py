@@ -1,13 +1,15 @@
 import pandas as pd
+import time
 from cleanData import clean_text
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.model_selection import train_test_split, cross_val_score, StratifiedKFold
+from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
-from sklearn.metrics import accuracy_score, classification_report
-
+from sklearn.metrics import accuracy_score
 
 class Predictor:
     def __init__(self):
+        start_time = time.time()
+
         # Load and preprocess dataset
         self.df = pd.read_csv('./data/trainEN.csv')
         self.df['clean_text'] = self.df['text'].apply(clean_text)
@@ -27,19 +29,33 @@ class Predictor:
         # Evaluate model
         svm_predictions = self.svm_classifier.predict(X_test)
         print("SVM Accuracy:", accuracy_score(y_test, svm_predictions))
-        print("SVM Classification Report:\n", classification_report(y_test, svm_predictions))
-
-        # Cross-validation
-        skf = StratifiedKFold(n_splits=5)
-        scores = cross_val_score(self.svm_classifier, X, y, cv=skf)
-        print("Cross-validated scores:", scores)
+        print(f"Initialization time: {time.time() - start_time:.2f} seconds")
 
     def predict_string(self, input_string):
+        start_time = time.time()
+
+        # Preprocess and vectorize input string
         clean_input = clean_text(input_string)
         vectorized_input = self.vectorizer.transform([clean_input])
+
+        # Make prediction
         prediction = self.svm_classifier.predict(vectorized_input)
+        print(f"Prediction time: {time.time() - start_time:.2f} seconds")
+
         return prediction[0]
 
+    def predict_batch(self, input_strings):
+        start_time = time.time()
+
+        # Preprocess and vectorize input strings
+        clean_inputs = [clean_text(string) for string in input_strings]
+        vectorized_inputs = self.vectorizer.transform(clean_inputs)
+
+        # Make predictions
+        predictions = self.svm_classifier.predict(vectorized_inputs)
+        print(f"Batch prediction time: {time.time() - start_time:.2f} seconds")
+
+        return predictions
 
 # Instantiate the Predictor class
 predictor = Predictor()

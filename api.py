@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 from predictor import predictor  # Import the instantiated predictor object
-from voice_recognizer import recognize_speech_from_mic  # Import the voice recognizer function
 
 app = Flask(__name__)
 
@@ -16,15 +15,6 @@ def check_string():
     result = predictor.predict_string(string_to_check)
 
     return jsonify({"result": bool(result)})
-
-@app.route('/recognize_voice', methods=['GET'])
-def recognize_voice():
-    # Recognize speech and convert it to text
-    recognized_text = recognize_speech_from_mic()
-    if recognized_text is None:
-        return jsonify({"error": "Could not recognize speech"}), 500
-
-    return jsonify({"recognized_text": recognized_text})
 
 if __name__ == '__main__':
     app.run(debug=True)
