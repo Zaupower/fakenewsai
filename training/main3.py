@@ -1,5 +1,5 @@
 import pandas as pd
-from cleanData import clean_text
+from clean_data import clean_text
 
 # Carregar os dataset
 df = pd.read_csv('../trainEN.csv')
@@ -25,7 +25,7 @@ svm_classifier.fit(X_train, y_train)
 svm_predictions = svm_classifier.predict(X_test)
 print("SVM Accuracy:", accuracy_score(y_test, svm_predictions))
 
-# Cross Validation VERY IMPORTANT
+# Cross Validation
 from sklearn.model_selection import cross_val_score, StratifiedKFold
 skf = StratifiedKFold(n_splits=5)
 scores = cross_val_score(svm_classifier, X, y, cv=skf)

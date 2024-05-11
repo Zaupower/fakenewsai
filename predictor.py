@@ -1,10 +1,11 @@
 import pandas as pd
 import time
-from cleanData import clean_text
+from clean_data import clean_text
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score
 from sklearn.svm import SVC
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, classification_report
+
 
 class Predictor:
     def __init__(self):
@@ -12,7 +13,9 @@ class Predictor:
 
         # Load and preprocess dataset
         self.df = pd.read_csv('./data/trainEN.csv')
-        self.df['clean_text'] = self.df['text'].apply(clean_text)
+        # Combine title and text columns
+        self.df['combined_text'] = self.df['title'] + " " + self.df['text']
+        self.df['clean_text'] = self.df['combined_text'].apply(clean_text)
 
         # Vectorize dataset
         self.vectorizer = TfidfVectorizer(max_features=5000, min_df=3, max_df=0.7, ngram_range=(1, 2))
@@ -30,6 +33,12 @@ class Predictor:
         svm_predictions = self.svm_classifier.predict(X_test)
         print("SVM Accuracy:", accuracy_score(y_test, svm_predictions))
         print(f"Initialization time: {time.time() - start_time:.2f} seconds")
+
+        # Cross-validation
+        skf = StratifiedKFold(n_splits=5)
+        scores = cross_val_score(self.svm_classifier, X, y, cv=skf)
+        print("Cross-validated scores:", scores)
+        print("SVM Classification Report:\n", classification_report(y_test, svm_predictions))
 
     def predict_string(self, input_string):
         start_time = time.time()

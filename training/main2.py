@@ -1,5 +1,5 @@
 import pandas as pd
-from cleanData import clean_text
+from clean_data import clean_text
 
 # Carregar os dataset
 df = pd.read_csv('./data/trainEN.csv')

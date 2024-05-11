@@ -3,7 +3,7 @@ import pandas as pd
 #vectorize data
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-from cleanData import clean_text
+from clean_data import clean_text
 
 # Carregar os datasets
 df = pd.read_csv('../trainEN.csv')
