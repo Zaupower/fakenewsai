@@ -9,12 +9,9 @@ def check_string():
     data = request.get_json()
     if not data or 'string' not in data:
         return jsonify({"error": "No string provided"}), 400
-
     string_to_check = data['string']
-
     # Predict using the predictor object
     result = predictor.predict_string(string_to_check)
-
     # Convert result to string
     result_str = "unreliable news" if result == 1 else "reliable news"
     return jsonify({"result": result_str})
