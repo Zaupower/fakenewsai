@@ -4,10 +4,10 @@ import pandas as pd
 import config
 
 # Use your keys here
-print("CONSUMER_KEY: " + config.CONSUMER_KEY)
-print("CONSUMER_SECRET: " + config.CONSUMER_SECRET)
-print("ACCESS_TOKEN: " + config.ACCESS_TOKEN)
-print("ACCESS_TOKEN_SECRET: " + config.ACCESS_TOKEN_SECRET)
+#print("CONSUMER_KEY: " + config.CONSUMER_KEY)
+#print("CONSUMER_SECRET: " + config.CONSUMER_SECRET)
+#print("ACCESS_TOKEN: " + config.ACCESS_TOKEN)
+#print("ACCESS_TOKEN_SECRET: " + config.ACCESS_TOKEN_SECRET)
 #Pass in our twitter API authentication key
 auth = tweepy.OAuth1UserHandler(
     config.CONSUMER_KEY, config.CONSUMER_SECRET,
