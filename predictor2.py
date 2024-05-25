@@ -22,7 +22,7 @@ class Predictor:
         start_time = time.time()
 
         # Load and preprocess dataset
-        self.df = pd.read_csv('./data/trainEN.csv')
+        self.df = pd.read_csv('datasets/trainEN.csv')
         # Combine title and text columns
         self.df['combined_text'] = self.df['title'] + " " + self.df['text']
         self.df['clean_text'] = self.df['combined_text'].apply(clean_text)
@@ -79,7 +79,7 @@ def start_tcp_server(predictor, host='127.0.0.1', port=65432):
                 if not data:
                     break
                 
-                # Deserialize the received data
+                # Deserialize the received datasets
                 request = pickle.loads(data)
                 print("Request: " + str(request))
 
