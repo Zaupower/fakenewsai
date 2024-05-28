@@ -1,0 +1,21 @@
+Industry,Dataset Title,Website Link
+Technology,AG News Dataset,https://huggingface.co/datasets/ag_news
+Technology,Kaggle's News Aggregator Dataset,https://www.kaggle.com/datasets?tags=13302-Classification
+Technology,Reuters-21578,https://archive.ics.uci.edu/ml/datasets/reuters-21578+text+categorization+collection
+Technology,20 Newsgroups Dataset,https://scikit-learn.org/0.19/datasets/twenty_newsgroups.html
+Finance,GICS Dataset,https://github.com/bautheac/GICS
+Finance,NAICS Dataset,https://www.census.gov/eos/www/naics/
+Finance,Datarade’s Industry Data,https://datarade.ai/
+Finance,Company Corpus for Industry and Sector Classification,https://www.textorch.com
+Healthcare,UCI Machine Learning Repository,https://archive.ics.uci.edu/ml/index.php
+Healthcare,Global Industry Classification Standard (GICS),https://github.com/bautheac/GICS
+Healthcare,FactSet Hierarchy DataFeed,https://insight.factset.com
+Healthcare,Open Industrial Datasets,https://github.com/AndreaPi/Open-industrial-datasets
+Energy,Airbus AI Gym,https://aigym.airbus.com
+Energy,Electricity Supply Monitoring Initiative (ESMI) Dataset,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/CLLZZM
+Energy,Open Industrial Data,https://openindustrialdata.com
+Energy,Transportation Mode Detection Dataset,http://cs.unibo.it/projects/us-tm2017/index.html
+Consumer Goods,BRIDGE Healthcare Industry Leads Data,https://datarade.ai/
+Consumer Goods,UK National Data Repository,https://ndr.ogauthority.co.uk
+Consumer Goods,VSB Power Line Fault Detection Dataset,https://www.kaggle.com/c/vsb-power-line-fault-detection/data
+Consumer Goods,Text Classification Datasets by Textorc,https://www.textorc.com
