@@ -2,7 +2,7 @@ import socket
 import pickle
 import pandas as pd
 import time
-from clean_data import clean_text
+from helper_functions.clean_data import clean_text
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
