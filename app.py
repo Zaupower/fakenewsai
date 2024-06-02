@@ -46,6 +46,31 @@ def predict():
         }
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.route('/predict_string', methods=['POST'])
+def predict_string():
+    data = request.json
+    if 'text' not in data:
+        return jsonify({"error": "No text provided"}), 400
+
+    try:
+        input_text = data['text']
+        
+        # Clean the text
+        clean_input_text = clean_text(input_text)
+        
+        # Make prediction
+        prediction = model.predict([clean_input_text])
+        
+        # Convert numpy int64 to Python int
+        prediction = int(prediction[0])
+        
+        # Return the prediction result
+        #1: unreliable
+        #0: reliable
+        return jsonify({"prediction": prediction}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
